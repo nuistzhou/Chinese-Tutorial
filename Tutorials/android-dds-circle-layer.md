@@ -1,13 +1,14 @@
 ---
-title: Data-driven styling for Android
-description: Create a map for Android that styles a circle based on a data attribute.
+title: 针对安卓的数据驱动样式
+description: 创建一张针对安卓的地图，并基于属性数据设计一个圆的样式。
+
 thumbnail: androidDdsCircleLayer
 level: 2
 topics:
 - mobile apps
 language:
 - Java
-prereq: An Android application with a map view set up and familiarity with Android Studio and Java.
+前提: 一个设置好地图视图的安卓应用程序，并且熟悉 Android Studio 和 Java。
 prependJs:
   - "import * as constants from '../../constants';"
   - "import Icon from '@mapbox/mr-ui/icon';"
@@ -20,18 +21,18 @@ prependJs:
 contentType: tutorial
 ---
 
-[Data-driven styling](/help/glossary/data-driven-styling/) is a powerful feature within the Mapbox Maps SDK for Android that allows you to use data attributes to style your maps. With data-driven styling, you can automatically style map features based on their individual attributes. In this tutorial, you'll build a map for Android that includes a circle layer styled based on a data attribute.
+[数据驱动样式](/help/glossary/data-driven-styling/) 是 Mapbox Maps SDK for Android 的一个强大特性，其允许您使用属性数据来设计地图样式。通过数据驱动样式, 您可以全自动地设计基于各自属性的地图要素样式。 在本教程中, 您将创建一张包含圆形图层基于Android的地图，其依据属性数据设计样式。
 
 <div class='align-center'>
 <img src='/help/img/android/android-dds-style-by-attribute.png' alt='map with data styled by attribute on an Android device' class='inline wmax360-mm wmax-full'>
 </div>
 
-## Getting started
+## 开始
 
-This guide assumes that you are familiar with Java and Android Studio. Here are the resources that you’ll need before getting started:
+本教程假定您已经熟悉Java和Android Studio。以下是您开始前需要的一些资料：
 
-- **An application including the Mapbox Maps SDK for Android.** This guide also assumes that you have already begun building an Android application that uses the Mapbox Maps SDK for Android. If you're new to the Maps SDK for Android, complete the [First steps with the Mapbox Maps SDK for Android](/help/tutorials/first-steps-android-sdk/) guide to set up a map view first.
-- **Data.** We collected data from the District of Columbia's [Open Data DC](http://opendata.dc.gov/) that shows the location of street trees in Washington, D.C. Each tree has a `DBH` attribute that is the [diameter at breast height](https://en.wikipedia.org/wiki/Diameter_at_breast_height), a common metric for expressing the size of trees.
+- **一个包含Mapbox Maps SDK for Android的应用程序。** 本教程假定您已经开始创建一个基于Mapbox Maps SDK for Android的安卓应用程序。如果Maps SDK for Android对您来说还是陌生的，请先完成教程[Mapbox Maps SDK for Android起步](/help/tutorials/first-steps-android-sdk/)来创建一个地图视图。
+- **数据。** 我们从哥伦比亚特区的[Open Data DC](http://opendata.dc.gov/)收集了其行道树的位置数据。每一棵树都有一个`DBH`属性，代表[树胸高直径](https://en.wikipedia.org/wiki/Diameter_at_breast_height), 用来衡量树的大小.
 
 {{
 <Button href="/help/data/street-trees-DC.zip" passthroughProps={{ download: "street-trees-DC" }} >
@@ -39,9 +40,9 @@ This guide assumes that you are familiar with Java and Android Studio. Here are 
 </Button>
 }}
 
-## Upload data to Mapbox
+## 上传数据到Mapbox
 
-In this tutorial, you will be using a [vector tileset](/help/glossary/tileset) to display data in your application. You can create a vector tileset by uploading the Open Data DC Shapefile Mapbox Studio:
+在本教程中，您将使用[向量瓦片集](/help/glossary/tileset) 来在您的应用中展示数据。您可以通过上传Open Data DC的Shapefile到Mapbox Studio来创建向量瓦片集：
 
 1. Log into [Mapbox Studio](https://www.mapbox.com/studio).
 1. Visit the [Tilesets page](https://www.mapbox.com/studio/tilesets).
