@@ -1,6 +1,6 @@
 ---
 title: 针对安卓的数据驱动样式
-description: 创建一张针对安卓的地图，并基于属性数据设计一个圆的样式。
+description: 创建一张安卓地图，并基于属性数据设计一个圆的样式。
 
 thumbnail: androidDdsCircleLayer
 level: 2
@@ -8,7 +8,7 @@ topics:
 - mobile apps
 language:
 - Java
-前提: 一个设置好地图视图的安卓应用程序，并且熟悉 Android Studio 和 Java。
+前提: 您已创建好一个包含地图视图的安卓应用程序，并且熟悉 Android Studio 和 Java。
 prependJs:
   - "import * as constants from '../../constants';"
   - "import Icon from '@mapbox/mr-ui/icon';"
@@ -21,7 +21,7 @@ prependJs:
 contentType: tutorial
 ---
 
-[数据驱动样式](/help/glossary/data-driven-styling/) 是 Mapbox Maps SDK for Android 的一个强大特性，其允许您使用属性数据来设计地图样式。通过数据驱动样式, 您可以全自动地设计基于各自属性的地图要素样式。 在本教程中, 您将创建一张包含圆形图层基于Android的地图，其依据属性数据设计样式。
+[数据驱动样式](/help/glossary/data-driven-styling/) 是 Mapbox Maps SDK for Android 的一个强大特性，其允许您使用属性数据来设计地图样式。通过数据驱动样式, 您可以全自动地定义基于各属性的地图要素样式。 在本教程中, 您将创建一张依据属性数据设计样式，包含圆形图层的Android地图。
 
 <div class='align-center'>
 <img src='/help/img/android/android-dds-style-by-attribute.png' alt='map with data styled by attribute on an Android device' class='inline wmax360-mm wmax-full'>
@@ -31,7 +31,7 @@ contentType: tutorial
 
 本教程假定您已经熟悉Java和Android Studio。以下是您开始前需要的一些资料：
 
-- **一个包含Mapbox Maps SDK for Android的应用程序。** 本教程假定您已经开始创建一个基于Mapbox Maps SDK for Android的安卓应用程序。如果Maps SDK for Android对您来说还是陌生的，请先完成教程[Mapbox Maps SDK for Android起步](/help/tutorials/first-steps-android-sdk/)来创建一个地图视图。
+- **一个包含Mapbox Maps SDK for Android的应用程序。** 本教程假定您已创建了一个基于Mapbox Maps SDK for Android的安卓应用程序。如果Maps SDK for Android对您来说还是陌生的，请先参考教程[Mapbox Maps SDK for Android起步](/help/tutorials/first-steps-android-sdk/)来创建一个地图视图。
 - **数据。** 我们从哥伦比亚特区的[Open Data DC](http://opendata.dc.gov/)收集了其行道树的位置数据。每一棵树都有一个`DBH`属性，代表[树胸高直径](https://en.wikipedia.org/wiki/Diameter_at_breast_height), 用来衡量树的大小.
 
 {{
@@ -50,14 +50,14 @@ contentType: tutorial
 1. 选择您之前下载好的Shapefile并点击**确认**。
 1. 右下角将出现一个弹出框，显示上传进度。
 1. 一旦上传 _完成_, 瓦片集即可使用。点击弹出框里的瓦片集名称，会打开该瓦片集的详情页面。
-1. 请记录该详情页面右侧的**瓦片集 ID**。稍后，您将使用该ID来添加该瓦片集到您的应用程序。
+1. 请记录该详情页面右侧的**Tileset ID**。稍后，您将使用该ID来添加此瓦片集到您的应用程序。
 
 ## 初始化一个地图视图
 
-在Android Studio中创建一个新项目并初始化一个地图视图。为使用Android Studio项目创建一个Mapbox地图，并添加定制化数据来使用数据驱动样式来设计其样式，您需要以下5个文件：
+在Android Studio中创建一个新项目并初始化一个地图视图。为使用Android Studio项目创建一个Mapbox地图，并添加定制化数据来使用数据驱动样式，您需要以下5个文件：
 
 - **build.gradle**: Android Studio使用Gradle工具集将源文件和源代码编译成一个APK文件。`build.gradle` 文件被用来配置构建和管理包括Mapbox Maps SDK for Android在内的依赖。
-- **AndroidManifest.xml**: 您可以在`AndroidManifest.xml` 文件中描述应用程序的组件，比如同Mapbox相关的权限。
+- **AndroidManifest.xml**: 您可以在`AndroidManifest.xml` 文件中描述应用程序的组件，比如与Mapbox相关的权限。
 - **activity_main.xml**: 您可以在`activity_main.xml` 文件中设置地图视图的属性(例如地图视图的中心, 缩放级别以及地图样式)。
 - **strings.xml**: 您可以将access token存储在`strings.xml`文件中。
 - **MainActivity.java**: 您可以在`MainActivity.java`文件中指定Mapbox的各种交互.
@@ -153,7 +153,7 @@ dependencies {
 
 ## 样式化图层
 
-现在，您将改变每个圆形的颜色及其不透明度，以使数据更容易在黑色的底图上被看到。其次，您还需要基于`DBH`属性的值来改变每个圆形的大小。
+现在，您将改变每个圆形的颜色及其不透明度，以使数据更容易在黑色的底图上被看到。其次，您还需要基于`DBH`属性的值来设置每个圆形的大小。
 
 ### 改变颜色和不透明度
 
@@ -184,7 +184,7 @@ dependencies {
 
 最后，您将基于`DBH`值来指定圆形的半径。同样，您需要`Function` 以及 `exponential`类来创建一个property function， `Stop`类来决定基于`DBH`值的圆形半径，`circleRadius`类来设定circleRadius paint property。
 
-接下来，使用exponential property function替换`circleLayer.withProperties( ... )`中用来指定图层paint properties的代码：
+接下来，使用如下exponential property function替换`circleLayer.withProperties( ... )`中用来指定图层paint properties的代码：
 
 {{
   <AndroidTutorialCodeBlock
