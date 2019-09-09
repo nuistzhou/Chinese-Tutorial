@@ -44,23 +44,23 @@ contentType: tutorial
 
 在本教程中，您将使用[向量瓦片集](/help/glossary/tileset) 来在您的应用中展示数据。您可以通过上传Open Data DC的Shapefile到Mapbox Studio来创建向量瓦片集：
 
-1. Log into [Mapbox Studio](https://www.mapbox.com/studio).
-1. Visit the [Tilesets page](https://www.mapbox.com/studio/tilesets).
-1. Click **New tileset**.
-1. Select the Shapefile you downloaded at the beginning of this tutorial and click **Confirm**.
-1. A popover will appear in the bottom right showing the progress of your upload.
-1. Once the upload has _Succeeded_, the tileset will be ready to use! Click on the name of the tileset in the popover, which will open the tileset information page.
-1. Take note of the **tileset ID** on the right side of the tileset information page. You will use the ID to add this tileset to your application later in this guide.
+1. 登录[Mapbox Studio](https://www.mapbox.com/studio)。
+1. 访问[瓦片集页面](https://www.mapbox.com/studio/tilesets)。
+1. 点击 **新瓦片集**。
+1. 选择您之前下载好的Shapefile并点击**确认**。
+1. 右下角将出现一个弹出框，显示上传进度。
+1. 一旦上传 _完成_, 瓦片集即可使用。点击弹出框里的瓦片集名称，会打开该瓦片集的详情页面。
+1. 请记录该详情页面右侧的**瓦片集 ID**。稍后，您将使用该ID来添加该瓦片集到您的应用程序。
 
-## Initialize a MapView
+## 初始化一个地图视图
 
-Start by creating a new project in Android Studio and initializing a MapView. There are five files you'll be working with in your Android Studio project to set up a Mapbox map and add custom data to be styled using data-driven styling. The five files you'll be working with include:
+在Android Studio中创建一个新项目并初始化一个地图视图。为使用Android Studio项目创建一个Mapbox地图，并添加定制化数据来使用数据驱动样式来设计其样式，您需要以下5个文件：
 
-- **build.gradle**: Android Studio uses a toolkit called Gradle to compile resources and source code into an APK. The `build.gradle` file is used to configure the build and list dependencies, including the Mapbox Maps SDK for Android.
-- **AndroidManifest.xml**: The `AndroidManifest.xml` file is where you'll describe components of the application, including Mapbox-related permissions.
-- **activity_main.xml**: The `activity_main.xml` file is where you'll set the properties for your MapView (for example, the center of the map view, the zoom level, and the map style used).
-- **strings.xml**: You'll store your access token in the `strings.xml` file.
-- **MainActivity.java**: `MainActivity.java` is a Java file where you'll specify Mapbox-specific interactions.
+- **build.gradle**: Android Studio使用Gradle工具集将源文件和源代码编译成一个APK文件。`build.gradle` 文件被用来配置构建和管理包括Mapbox Maps SDK for Android在内的依赖。
+- **AndroidManifest.xml**: 您可以在`AndroidManifest.xml` 文件中描述应用程序的组件，比如同Mapbox相关的权限。
+- **activity_main.xml**: 您可以在`activity_main.xml` 文件中设置地图视图的属性(例如地图视图的中心, 缩放级别以及地图样式)。
+- **strings.xml**: 您可以将access token存储在`strings.xml`文件中。
+- **MainActivity.java**: 您可以在`MainActivity.java`文件中指定Mapbox的各种交互.
 
 {{
   <div className="txt-s txt-fancy mb6" style={{ color: "#273d56" }}>build.gradle (App module)</div>
