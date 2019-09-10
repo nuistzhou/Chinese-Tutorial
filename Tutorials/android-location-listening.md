@@ -225,13 +225,13 @@ dependencies {
 
 通过 `PermissionsManager.areLocationPermissionsGranted(this)` 的布尔检查， 您已知晓应用程序已经获取了位置权限，同时 `LocationEngine` 也已经初始化。现在您可以安心地初始化 [Maps SDK 的 `LocationComponent` 组件](https://docs.mapbox.com/android/maps/overview/location-component/)。该组件可在地图上显示设备位置图标，但您**并非必须**显示该图标，因为其并不影响您继续阅读本教程。_因此，如您无意在地图上显示位置图标，可跳过本节_。
 
-当 `LocationComponent` 组件的 `RenderMode` 选项是 `COMPASS` 时，位置图标的外部将显示一个箭头表征罗盘方位。该箭头指向设备的朝向。[有关其他 `RenderMode` 选项，请参考该链接](https://docs.mapbox.com/android/maps/overview/location-component/#rendermode)。
+当 `LocationComponent` 组件的 `RenderMode` 选项是 `COMPASS` 时，位置图标的外部将显示一个箭头表征罗盘方位。该箭头指向设备的朝向。[有关其他 `RenderMode` 选项，请参考本链接](https://docs.mapbox.com/android/maps/overview/location-component/#rendermode)。
 
 <div class='align-center'>
 <img src='/help/img/android/android-location-tracking-compass-arrow.png' alt='map with location tracked and showing LocationComponent' class='inline wmax360-mm wmax-full'>
 </div>
 
-当`LocationComponent` 的 `CameraMode` 选项是 `TRACKING` 时，地图将随设备位置的变化而变化。[有关其他 `CameraMode` 选项，请参考该链接](https://docs.mapbox.com/android/maps/overview/location-component/#cameramode)。
+当`LocationComponent` 的 `CameraMode` 选项是 `TRACKING` 时，地图视野将随设备位置的变化而变化。[有关其他 `CameraMode` 选项，请参考本链接](https://docs.mapbox.com/android/maps/overview/location-component/#cameramode)。
 
 {{
   <AndroidTutorialCodeBlock
