@@ -191,7 +191,7 @@ Override the `onExplanationNeeded()` method once you implement the `PermissionsL
 
 - 位置更新的间隔（毫秒）。
 - 位置更新的精度。
-- 位置更新的最长等待时间（毫秒）。 位置在间隔期间测定，而根据等待时间的长短分批传递返回，但只有部分引擎支持分批这一特性。
+- 位置更新的最长等待时间（毫秒）。 位置在更新间隔测定，而根据等待时间的长短分批传递返回，但只有部分引擎支持分批这一特性。
 
 {{
   <AndroidTutorialCodeBlock
@@ -205,7 +205,7 @@ Override the `onExplanationNeeded()` method once you implement the `PermissionsL
   />
 }}
 
-You'll also want to add the following to `onDestroy()` to prevent leaks:
+您可能还需添加如下代码到 `onDestroy()` 方法来防止内存泄漏：
 
 {{
   <AndroidTutorialCodeBlock
@@ -218,21 +218,21 @@ You'll also want to add the following to `onDestroy()` to prevent leaks:
 }}
 
 
-## Enable the `LocationComponent`
+## 启用 `LocationComponent` 组件
 
 {{<Note imageComponent={<BookImage />}>}}
-This section is optional. You can skip this section if you don't care about showing the location puck on the map.
+本节是可选内容。如果您无意在地图上显示位置图标，可跳过本节。
 {{</Note>}}
 
-Thanks to the `PermissionsManager.areLocationPermissionsGranted(this)` boolean check, you now know that the location permission has been granted. You also know that the `LocationEngine` has been initialized. Now you can confidently initialize [the Maps SDK's `LocationComponent`](https://docs.mapbox.com/android/maps/overview/location-component/). The `LocationComponent` shows the device location "puck" icon on the map. You don't **have** to show the device location icon on the map to progress through this help guide. _Skip this section if you don't care about showing the location puck on the map_
+通过 `PermissionsManager.areLocationPermissionsGranted(this)` 的布尔检查， 您已知晓应用程序已获取了位置权限，同时 `LocationEngine` 也已经初始化。现在您可以初始化 [Maps SDK 的 `LocationComponent` 组件](https://docs.mapbox.com/android/maps/overview/location-component/)。该组件可在地图上显示设备位置图标，但您**并非必须**显示该图标，因为其并不影响您继续阅读本教程。_因此，如您无意在地图上显示位置图标，可跳过本节_。
 
-The `LocationComponent` has `COMPASS` as its `RenderMode`, which means an arrow will be shown outside the location icon to display the device's compass bearing. The arrow indicates which direction the device is pointed towards. [There are other `RenderMode` choices if you do not want `COMPASS`](https://docs.mapbox.com/android/maps/overview/location-component/#rendermode).
+当 `LocationComponent` 组件的 `RenderMode` 选项是 `COMPASS`时，位置图标的外部将显示一个箭头表征罗盘方位。该箭头指向设备的朝向。[其他 `RenderMode` 选项，请参考链接](https://docs.mapbox.com/android/maps/overview/location-component/#rendermode)。
 
 <div class='align-center'>
 <img src='/help/img/android/android-location-tracking-compass-arrow.png' alt='map with location tracked and showing LocationComponent' class='inline wmax360-mm wmax-full'>
 </div>
 
-The `LocationComponent` has `TRACKING` as its `CameraMode`, which means that the map camera will follow the device's location. [There are other `CameraMode` options though](https://docs.mapbox.com/android/maps/overview/location-component/#cameramode).
+当`LocationComponent` 的 `CameraMode` 选项是 `TRACKING` 时，地图视角将随设备位置的变化而变化。[其他 `CameraMode` 选项，请参考链接](https://docs.mapbox.com/android/maps/overview/location-component/#cameramode)。
 
 {{
   <AndroidTutorialCodeBlock
@@ -247,13 +247,13 @@ The `LocationComponent` has `TRACKING` as its `CameraMode`, which means that the
   />
 }}
 
-## Listen to location updates
+## 监听位置变化
 
-The last step is to create a location update interface callback to listen to location updates from the Mapbox Core Libraries for Android.
+最后一步，我们将创建一个位置更新的接口回调来监听来自于 Mapbox Core Libraries for Android 的位置更新。
 
-Create a class that implements `LocationEngineCallback<LocationEngineResult>`. The `LocationEngineCallback<LocationEngineResult>` interface is a part of the Core Libraries. Make sure the class requires Android system `Activity` as a constructor parameter. This new class should be created because a `LocationEngine` memory leak is possible if the activity/fragment directly implements the `LocationEngineCallback<LocationEngineResult>`. The `WeakReference` setup avoids the leak.
+创建一个实现 `LocationEngineCallback<LocationEngineResult>` 接口的类，该接口是 Core Libraries 的一部分， 同时请确保安卓系统的 `Activity` 作为该类的一个构造参数。值得注意的是，活动/碎片直接实现 `LocationEngineCallback<LocationEngineResult>` 接口可能引起 `LocationEngine` 内存泄漏，而创建此新类并设置 `WeakReference` 可避免该泄漏。
 
-Implementing `LocationEngineCallback<LocationEngineResult>` requires you to override the `onSuccess()` and `onFailure()` methods.
+实现 `LocationEngineCallback<LocationEngineResult>` 接口 需要重写方法 `onSuccess()` 和 `onFailure()`。
 
 {{
   <AndroidTutorialCodeBlock
