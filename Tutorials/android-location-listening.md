@@ -251,7 +251,7 @@ Override the `onExplanationNeeded()` method once you implement the `PermissionsL
 
 最后一步，我们将创建一个位置更新的接口回调来监听来自于 Mapbox Core Libraries for Android 的位置更新。
 
-创建一个实现 `LocationEngineCallback<LocationEngineResult>` 接口的类，该接口是 Core Libraries 的一部分， 同时请确保安卓系统的 `Activity` 作为该类的一个构造参数。值得注意的是，活动/碎片直接实现 `LocationEngineCallback<LocationEngineResult>` 接口可能引起 `LocationEngine` 内存泄漏，而创建此新类并设置 `WeakReference` 可避免该泄漏。
+创建一个实现 `LocationEngineCallback<LocationEngineResult>` 接口的类，该接口是 Core Libraries 的一部分， 同时请确保安卓系统的 `Activity` 作为该类的一个构造参数。值得注意的是，Activity/Fragment直接实现 `LocationEngineCallback<LocationEngineResult>` 接口可能引起 `LocationEngine` 内存泄漏，而创建此新类并设置 `WeakReference` 可避免该泄漏。
 
 实现 `LocationEngineCallback<LocationEngineResult>` 接口 需要重写方法 `onSuccess()` 和 `onFailure()`。
 
@@ -266,12 +266,12 @@ Override the `onExplanationNeeded()` method once you implement the `PermissionsL
   />
 }}
 
-`OnSuccess()` runs whenever the Mapbox Core Libraries identifies a change in the device's location. `result.getLastLocation()` gives you a `Location` object and that object has the latitude and longitude values. Now you can display the values in your app's UI, save it in memory, send it to your backend server, or use the device location information how you'd like.
+每当 Mapbox Core Libraries 识别出设备位置的变化时，就会调用 `OnSuccess()` 方法。其中，`result.getLastLocation()` 方法返回一个包含经、纬度值的 `Location` 对象。现在，您可以通过您喜欢的方式使用该设备位置信息了，例如显示在应用程序的 UI ，保存于内存中，或者发送到后端服务器。
 
 
-## Finished product
+## 完结
 
-You have set up code to be notified of device location updates. The screenshot below shows Nashville, but in reality, the map camera will move to wherever your device is if you're still using `TRACKING` as the `LocationComponent`'s `CameraMode`.
+至此，您已配置好用来获得设备位置更新的代码。下方截图显示位于纳什维尔市，但事实上，如果 `LocationComponent` 组件的 `CameraMode` 选项仍是 `TRACKING`， 地图视角将移动到任何您设备所在的位置。
 
 <div class='align-center'>
 <img src='/help/img/android/android-location-tracking-final.gif' alt='map with location tracked and showing LocationComponent' class='inline wmax360-mm wmax-full'>
@@ -284,6 +284,6 @@ You have set up code to be notified of device location updates. The screenshot b
   />
 }}
 
-## Next steps
+## 下一步
 
-There are many possibilities when using the `LocationComponent`. Explore [the Android demo app's location-related examples](https://github.com/mapbox/mapbox-android-demo/blob/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/location/) to see how to show a device's location in an Android fragment, to customize the `LocationComponent` icon, and much more.
+`LocationComponent` 组件提供了很多可能性。 请参考 [Android 演示应用程序中的位置相关实例](https://github.com/mapbox/mapbox-android-demo/blob/master/MapboxAndroidDemo/src/main/java/com/mapbox/mapboxandroiddemo/examples/location/)， 了解如何在 Android Fragment 中显示设备位置，定制 `LocationComponent` 组件图标等等。
